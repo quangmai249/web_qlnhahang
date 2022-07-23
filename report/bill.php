@@ -21,7 +21,7 @@
     $id = $_GET['id'];
     
     $row = (array) callAPI("GET", $id);
-
+    //hoadon
     $pdf = new PDF();
     $pdf->AddPage();
     $pdf->Cell(0,10,'Mã hóa đơn '.$row['id'],0,0,'L');
