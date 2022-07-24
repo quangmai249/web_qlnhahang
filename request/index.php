@@ -162,8 +162,10 @@
                   $keyWaiter = $waiter;
                   $waiter = (array) $listUser[$waiter];
                   echo '<h3>Phục vụ: '.$waiter['name'].'</h3>';
-                  // get item info
-                  ?>
+                  if($role == 0) {
+                    $token = $waiter['token'];
+                    
+                    ?>
                     <div class="table-responsive">
                       <table class="table">
                         <thead class="text-primary">
@@ -209,6 +211,7 @@
                               if($status != -1) {
                                 $sum += $price * $count;
                               }
+                              //render_row($path, (array)$item, $count, $price, $status, $role, $waiter['token'], $name, $keyWaiter, $reason, $note);
                               render_row($path, (array)$item, $count, $price, $status, $role, $waiter['token'], $name, $keyWaiter, $reason, $note);
                             }
                           ?>
@@ -221,23 +224,92 @@
                           Tổng tiền: <?php echo formatPrice($sum);?>
                         </h4>
                         <?php
-                          if($role == 0) {
-                            $token = $waiter['token'];
-                            ?>
-                              <input type='hidden' name='item' value='Hóa đơn tại <?php echo $name;?> đã được thanh toán'>
-                              <input type='hidden' name='waiter' value='<?php echo $keyWaiter;?>'>
-                              <input type='hidden' name='table' value='<?php echo $name;?>'>
-                              <input type='hidden' name='token' value='<?php echo $token;?>'>
-                              <button type="submit" class="btn btn-primary" name="pay" value="<?php echo "order/$key/$keyRD.json"?>">
-                                Thanh toán
-                              </button>
-                            <?php
-                          }
+                          ?>
+                          <input type='hidden' name='item' value='Hóa đơn tại <?php echo $name;?> đã được thanh toán'>
+                          <input type='hidden' name='waiter' value='<?php echo $keyWaiter;?>'>
+                          <input type='hidden' name='table' value='<?php echo $name;?>'>
+                          <input type='hidden' name='token' value='<?php echo $token;?>'>
+                          <button type="submit" class="btn btn-primary" name="pay" value="<?php echo "order/$key/$keyRD.json"?>">
+                            Thanh toán
+                          </button>
+                          <a class="btn btn-primary" href="report/bill.php?id=<?php echo "order/$key/$keyRD.json"?>&table=<?php echo $name?>" target="_blank">Hóa đơn</a>
+                        <?php
+                          
                         ?>
-                        <a class="btn btn-primary" href="report/bill.php?id=<?php echo "order/$key/$keyRD.json"?>&table=<?php echo $name?>" target="_blank">Hóa đơn</a>
+                        
+                        
                       </div>
                     </form>
                   <?php
+                    
+                  }
+                  // get item info
+                  if($role == 1) {
+                    ?>
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead class="text-primary">
+                            <th style="font-size: 15pt;">
+                              Tên sản phẩm
+                            </th>
+                            <th style="font-size: 15pt">
+                              Số lượng
+                            </th>
+                            <!-- <th style="font-size: 15pt">
+                              Giá
+                            </th> -->
+                            <th style="font-size: 15pt">
+                              Trạng thái
+                            </th>
+                            <th style="font-size: 15pt">
+                              Ghi chú
+                            </th>
+                            <th style="font-size: 15pt">
+                              Lý do giảm
+                            </th>
+                            <th width="100px"></th>
+                          </thead>
+                          <tbody>
+                            <?php
+                              $items = (array) $rowRD['items'];
+                              foreach($items as $keyItem => $item) {
+                                $itemOrder = (array) $item;
+                                $itemId = $itemOrder['id'];
+                                // $itemGroup = $itemOrder['group'];
+                                // $itemGroup = (array)$listItem[$itemGroup];
+                                // $item = (array)$itemGroup[$itemId];
+                                $path = "order/$key/$keyRD/items/$keyItem.json";
+                                $count = $itemOrder['count'];
+                                $price = $itemOrder['price'];
+                                $status = $itemOrder['status'];
+                                $note = isset($itemOrder['note']) ? $itemOrder['note'] : "-";
+                                if(isset($itemOrder['reason'])) {
+                                  $reason = $itemOrder['reason'];
+                                } else {
+                                  $reason = "-";
+                                }
+                                if($status != -1) {
+                                  $sum += $price * $count;
+                                }
+                                //render_row($path, (array)$item, $count, $price, $status, $role, $waiter['token'], $name, $keyWaiter, $reason, $note);
+                                render_row($path, (array)$item, $count, $price, $status, $role, $waiter['token'], $name, $keyWaiter, $reason, $note);
+                              }
+                            ?>
+                          </tbody>
+                        </table>
+                      </div>
+                      <form method="post">
+                        <div class="form-group" style="text-align: right;">
+                          <!-- <h4>
+                            Tổng tiền: <?php echo formatPrice($sum);?>
+                          </h4> -->
+                          <?php
+                          ?>
+                          
+                        </div>
+                      </form>
+                    <?php
+                  }
                 }
             }
           }
@@ -268,7 +340,38 @@
       }
     }
     $status = getStatusActionOrder($status);
-    echo "<tr>
+    if($role == 1){
+      echo "<tr style=font-size: 25pt>
+            <td >
+              $name
+            </td>
+            <td>
+              $count
+            </td>
+            
+            <td>
+              $status
+            </td>
+            <td>
+              $note
+            </td>
+            <td>
+              $reason
+            </td>
+            <td>
+              <form method='post'>
+                <input type='hidden' name='count' value='$count'>
+                <input type='hidden' name='item' value='$msg'>
+                <input type='hidden' name='waiter' value='$waiter'>
+                <input type='hidden' name='table' value='$table'>
+                <input type='hidden' name='token' value='$token'>
+                $controll
+              </form>
+            </td>
+          </tr>";
+    }
+    else{
+      echo "<tr>
             <td>
               $name
             </td>
@@ -298,6 +401,8 @@
               </form>
             </td>
           </tr>";
+    }
+    
   }
 ?>
 
