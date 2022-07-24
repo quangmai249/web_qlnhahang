@@ -56,11 +56,21 @@
 <?php
   if($role == 0) {
     ?>
-      <li class="nav-item <?php if($page == 'report') echo 'active' ?>">
-        <a class="nav-link" href="?page=report">
+      <li >
+        <a class="nav-link" >
           <i class="material-icons">group</i>
           <p>Thống kê</p>
         </a>
+        <li class="nav-item <?php if($page == $key) echo 'active' ?>">
+          <a class="nav-link" href="?page=report-count">
+            <p style="margin-left: 48px">Thống kê doanh thu</p>
+          </a>
+        </li>
+        <li class="nav-item <?php if($page == $key) echo 'active' ?>">
+          <a class="nav-link" href="?page=report-amount">
+            <p style="margin-left: 48px">Thống kê sản phẩm</p>
+          </a>
+        </li>
       </li>
     <?php
   }
