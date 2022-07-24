@@ -46,7 +46,7 @@
       </div>
     <?php
   }
-?>
+?>    
 <li class="nav-item <?php if($page == 'request') echo 'active' ?>">
 	<a class="nav-link" href="?page=request">
 		<i class="material-icons">group</i>
