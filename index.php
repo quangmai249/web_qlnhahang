@@ -68,22 +68,22 @@ if (isset($_GET['page'])) {
               <?php
               switch ($page) {
                 case 'user':
-                include("user/index.php");
+                  include("user/index.php");
                 break;
                 case 'table':
                   include("table/index.php");
                   break;
                 case 'group':
-                include("group/index.php");
+                  include("group/index.php");
                 break;
                 case 'request':
-                include("request/index.php");
+                  include("request/index.php");
                 break;
                 case 'report':
                   include("report/index.php");
                 break;
                 default:
-                include("item/index.php");
+                  include("item/index.php");
                 break;
               }
               ?>
