@@ -13,7 +13,7 @@
             parent::Header();
         }
     }
-
+    //count
     // Connect to database
     include('../connection.php');
     $pdf = new PDF();
