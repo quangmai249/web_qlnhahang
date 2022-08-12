@@ -49,7 +49,7 @@
 			//Increase top margin to give space for buttons
 			F.coming.margin[ opts.position === 'bottom' ? 2 : 0 ] += 30;
 		},
-		//test
+
 		onPlayStart: function () {
 			if (this.list) {
 				this.buttons.play.attr('title', 'Pause slideshow').addClass('btnPlayOn');

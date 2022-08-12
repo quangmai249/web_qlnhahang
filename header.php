@@ -1,12 +1,12 @@
 <?php
-include 'connection.php';
-if (!isset($_SESSION['username'])) {
+  include('connection.php');
+  if(!isset($_SESSION['username'])){
     header("Location: login.php");
-}
-$key = '';
-if (isset($_POST['key'])) {
-    $key = $_POST['key'];
-}
+  }
+  $key = '';
+  if (isset($_POST['key'])) {
+          $key = $_POST['key'];
+        }
 ?>
 <html lang="en">
 <head>
@@ -22,10 +22,10 @@ if (isset($_POST['key'])) {
   <!-- CSS Files -->
   <link href="assets/css/material-dashboard.css?v=2.36" rel="stylesheet" />
   <link href="assets/demo/demo.css" rel="stylesheet" />
-  <!-- <link href="..<?php echo $root_host_file ?>/css/admin.css" rel="stylesheet" /> -->
+  <!-- <link href="..<?php echo $root_host_file?>/css/admin.css" rel="stylesheet" /> -->
 
 
-<!--   Core JS Files   -->
+<!--   Core JS Files   -->  
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -35,13 +35,13 @@ if (isset($_POST['key'])) {
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!-- <script src="..<?php echo $root_host_file ?>/assets/js/core/popper.min.js"></script>
-  <script src="..<?php echo $root_host_file ?>/assets/js/core/bootstrap-material-design.min.js"></script> -->
+  <!-- <script src="..<?php echo $root_host_file?>/assets/js/core/popper.min.js"></script>
+  <script src="..<?php echo $root_host_file?>/assets/js/core/bootstrap-material-design.min.js"></script> -->
 
   <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
 
 <!--   Core JS Files   -->
-
+  
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="assets/js/material-dashboard.js?v=2.2" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->

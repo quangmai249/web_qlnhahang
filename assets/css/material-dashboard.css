@@ -18871,7 +18871,7 @@ header {
     position: relative;
     display: block;
     padding:0;
-
+    border-bottom: 1px solid #e0e0e0;
 }
 
 #material-tabs>a {
@@ -18944,35 +18944,39 @@ header {
 }
 
 .btn-report {
+    position: relative;
    display:inline-block;
     text-decoration: none;
+    padding: 22px;
     font-size: 14px;
     font-weight: 600;
     color: #000;
     text-align: center;
     margin: 0px;
     border-radius: 5px;
-    width: 100px;
+    width: 300px;
     background-color: #9c27b0;
     color: #fff;
-    height: 50px;
+    height: 100px;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     border: 1px solid transparent;
 }
 
 .btn-report:hover {
+    position: relative;
    display:inline-block;
     text-decoration: none;
+    padding: 22px;
     font-size: 14px;
     font-weight: 600;
     color: #000;
     text-align: center;
     margin: 0px;
     border-radius: 5px;
-    width: 100px;
+    width: 300px;
     background-color: #AB47BC;
     color: #fff;
-    height: 50px;
+    height: 100px;
 }
 .report-div {
     position: relative;
@@ -18983,7 +18987,7 @@ header {
 
 .report-group {
   margin-bottom: 20px;
-  /* width: 300px; */
+  width: 300px;
 }
 
 .btn-control{
