@@ -33,17 +33,6 @@ if (isset($_GET['page'])) {
             <span class="navbar-toggler-icon icon-bar"></span>
             <span class="navbar-toggler-icon icon-bar"></span>
           </button>
-          <!-- <div class="collapse navbar-collapse justify-content-end">
-            <form class="navbar-form" method="post">
-              <div class="input-group no-border">
-                <input type="text" value="<?php echo $key?>" name="key" class="input-search form-control" placeholder="Search...">
-                <button type="submit" style="margin-left: 10px; background-color: #8e24aa; color: white" class="btn btn-white btn-round btn-just-icon">
-                  <i class="material-icons">search</i>
-                  <div class="ripple-container"></div>
-                </button>
-              </div>
-            </form>
-          </div> -->
         </div>
       </nav>
       <!-- End Navbar -->
@@ -96,7 +85,6 @@ if (isset($_GET['page'])) {
         </div>
       </div>
       <?php
-        //include('footer.php');
       ?>
     </div>
   </div>

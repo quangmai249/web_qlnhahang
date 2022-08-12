@@ -97,10 +97,6 @@
 	        {
 	            if($col['c']=='')
 	            {
-	                // if(is_string($col['f']))
-	                //     $this->aCols[$i]['c']=ucfirst($col['f']);
-	                // else
-	                //     $this->aCols[$i]['c']=ucfirst(mysqli_fetch_field_direct($res,$col['f'])->name);
 					$this->aCols[$i]['c']=ucfirst($col['f']);
 	            }
 	        }
@@ -128,7 +124,6 @@
 	        // Print header
 	        $this->TableHeader();
 	        // Print rows
-	        // $this->SetFont('Arial','',11);
 	        $this->AddFont('DejaVu','','DejaVuSansCondensed.ttf',true);
     		$this->SetFont('DejaVu','',10);
 	        $this->ColorIndex=0;
@@ -136,9 +131,6 @@
 			foreach($res as $key => $row) {
 				$this->Row($row);
 			}
-	        // while($row=mysqli_fetch_array($res)){
-	        //     $this->Row($row);
-	        // }
 	        $currentDay = "Ngày ".date("d"). " Tháng ".date("m")." Năm ".date("Y");
 	        $this->Cell(0,10,$currentDay,0,0,'R');
 	        $this->Ln();

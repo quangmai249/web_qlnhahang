@@ -55,9 +55,6 @@
       <th style="font-size: 15pt">
         Quyền
       </th>
-      <!-- <th style="font-size: 15pt">
-        Mật khẩu
-      </th> -->
       <th width="100px"></th>
     </thead>
     <tbody>

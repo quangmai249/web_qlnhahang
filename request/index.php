@@ -21,7 +21,6 @@
 
 .content-order {
   padding: 0 18px;
-  /* display: none; */
   overflow: hidden;
   background-color: #f1f1f1;
 }
@@ -43,7 +42,6 @@
   firebase.database().ref('order').on('value', function(dataSnapshot) {
     change += 1;
     if(change > 1) {
-      // document.getElementById('notify').style.display = 'block';
       location.reload();
     }
   });

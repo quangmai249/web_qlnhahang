@@ -70,11 +70,6 @@ function callAPI($method, $url, $data = false)
             if ($data)
                 $url = sprintf("%s?%s", $url, http_build_query($data));
     }
-
-    // Optional Authentication:
-    // curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-    // curl_setopt($curl, CURLOPT_USERPWD, "username:password");
-
     curl_setopt($curl, CURLOPT_URL, $url);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
@@ -110,7 +105,6 @@ function sentNotify($token, $message)
 
     $result = curl_exec($curl);
 	$http_status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-	// $data = json_decode($result);
 	curl_close($curl);
     return json_encode($result);
 }

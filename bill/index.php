@@ -48,9 +48,6 @@
                           foreach($items as $keyItem => $item) {
                             $itemOrder = (array) $item;
                             $itemId = $itemOrder['id'];
-                            // $itemGroup = $itemOrder['group'];
-                            // $itemGroup = (array)$listItem[$itemGroup];
-                            // $item = (array)$itemGroup[$itemId];
                             $path = "order/$key/$keyRD/items/$keyItem.json";
                             $count = $itemOrder['count'];
                             $price = $itemOrder['price'];
