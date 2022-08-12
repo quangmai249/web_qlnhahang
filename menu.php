@@ -57,12 +57,18 @@ $url = "group.json";
     ?>
       </div>
     <?php
+<<<<<<< HEAD
 }
 ?>
 <li class="nav-item <?php if ($page == 'request') {
     echo 'active';
 }
 ?>">
+=======
+  }
+?>    
+<li class="nav-item <?php if($page == 'request') echo 'active' ?>">
+>>>>>>> 4025135e307aa6e0a91718f190a1c07bcf20aba5
 	<a class="nav-link" href="?page=request">
 		<i class="material-icons">group</i>
 		<p>Đơn đặt</p>
@@ -71,6 +77,7 @@ $url = "group.json";
 <?php
 if ($role == 0) {
     ?>
+<<<<<<< HEAD
       <li class="nav-item <?php if ($page == 'bill') {
         echo 'active';
     }
@@ -85,9 +92,23 @@ if ($role == 0) {
     }
     ?>">
         <a class="nav-link" href="?page=report">
+=======
+      <li >
+        <a class="nav-link" >
+>>>>>>> 4025135e307aa6e0a91718f190a1c07bcf20aba5
           <i class="material-icons">group</i>
           <p>Thống kê</p>
         </a>
+        <li class="nav-item <?php if($page == $key) echo 'active' ?>">
+          <a class="nav-link" href="?page=report-count">
+            <p style="margin-left: 48px">Thống kê doanh thu</p>
+          </a>
+        </li>
+        <li class="nav-item <?php if($page == $key) echo 'active' ?>">
+          <a class="nav-link" href="?page=report-amount">
+            <p style="margin-left: 48px">Thống kê sản phẩm</p>
+          </a>
+        </li>
       </li>
     <?php
 }
