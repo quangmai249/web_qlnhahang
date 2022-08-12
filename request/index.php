@@ -43,7 +43,8 @@
   firebase.database().ref('order').on('value', function(dataSnapshot) {
     change += 1;
     if(change > 1) {
-      document.getElementById('notify').style.display = 'block';
+      // document.getElementById('notify').style.display = 'block';
+      location.reload();
     }
   });
 </script>
@@ -185,7 +186,7 @@
                           <th style="font-size: 15pt">
                             Lý do giảm
                           </th>
-                          <th width="100px"></th>
+                          <th width="150px"></th>
                         </thead>
                         <tbody>
                           <?php
@@ -257,18 +258,18 @@
     if($role == 1) {
       if($status == 0) {
         $controll = "
-                  <button type='submit' class='btn-control' name='confirm' value='$key'><i class='fa fa-check'></i></button>
-                  <button type='submit' class='btn-control' name='reject' value='$key'><i class='fa fa-trash'></i></button>
+                  <button type='submit' class='btn-control' name='confirm' value='$key' style='margin-left: 10px; background-color: blue'><i class='fa fa-check'></i></button>
+                  <button type='submit' class='btn-control' name='reject' value='$key' style='margin-left: 10px; background-color: red'><i class='fa fa-trash'></i></button>
                   ";
         if($count > 1) {
           $controll = "<button type='submit' class='btn-control' name='remove' value='$key'><i class='fa fa-window-minimize'></i></button>". $controll;
         }
       } else if($status == 1) {
-        $controll = "<button type='submit' class='btn-control' name='done' value='$key'><i class='fa fa-cutlery'></i></button>";
+        $controll = "<button type='submit' class='btn-control' name='done' value='$key' style='background-color: green'><i class='fa fa-cutlery'></i></button>";
       }
     }
     $status = getStatusActionOrder($status);
-    echo "<tr>
+    echo "<tr style='font-size: 24px'>
             <td>
               $name
             </td>
