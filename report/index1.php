@@ -52,6 +52,7 @@
 			Tổng giá
 			</th> -->
 		</thead>
+		<!-- Update view -->
 		<tbody>
 			<?php
 				$url="order.json";
