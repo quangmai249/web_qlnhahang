@@ -1,29 +1,20 @@
 <?php
-$role = $_SESSION['role'];
-if ($role == 0) {
+  $role = $_SESSION['role'];
+  if($role == 0) {
     ?>
-      <li class="nav-item <?php if ($page == 'user') {
-        echo 'active';
-    }
-    ?>">
+      <li class="nav-item <?php if($page == 'user') echo 'active' ?>">
           <a class="nav-link" href="?page=user">
             <i class="material-icons">person</i>
             <p>Quản trị</p>
           </a>
       </li>
-      <li class="nav-item <?php if ($page == 'table') {
-        echo 'active';
-    }
-    ?>">
+      <li class="nav-item <?php if($page == 'table') echo 'active' ?>">
         <a class="nav-link" href="?page=table">
           <i class="material-icons">group</i>
           <p>Bàn</p>
         </a>
       </li>
-      <li class="nav-item <?php if ($page == 'group') {
-        echo 'active';
-    }
-    ?>">
+      <li class="nav-item <?php if($page == 'group') echo 'active' ?>">
         <a class="nav-link" href="?page=group">
           <i class="material-icons">group</i>
           <p>Danh mục</p>
@@ -36,61 +27,49 @@ if ($role == 0) {
       </button>
       <div class="content-menu" style="padding: 0px">
         <?php
-$url = "group.json";
-    $listItemGroup = callAPI("GET", $url);
-    if ($listItemGroup) {
-        foreach ($listItemGroup as $key => $row) {
-            $row = (array) $row;
-            $name = $row['name'];
-            ?>
-              <li class="nav-item <?php if ($page == $key) {
-                echo 'active';
-            }
-            ?>">
-                <a class="nav-link" href="?page=<?php echo $key ?>">
-                  <p style="margin-left: 48px"><?php echo $name; ?></p>
+              $url="group.json";
+              $listItemGroup = callAPI("GET", $url);
+              if($listItemGroup) {
+                foreach($listItemGroup as $key => $row) {
+                  $row = (array) $row;
+                  $name = $row['name'];
+                  ?>
+              <li class="nav-item <?php if($page == $key) echo 'active' ?>">
+                <a class="nav-link" href="?page=<?php echo $key?>">
+                  <p style="margin-left: 48px"><?php echo $name;?></p>
                 </a>
               </li>
             <?php
-}
-    }
-    ?>
+                }
+              }
+          ?>
       </div>
     <?php
-}
+  }
 ?>
-<li class="nav-item <?php if ($page == 'request') {
-    echo 'active';
-}
-?>">
+<li class="nav-item <?php if($page == 'request') echo 'active' ?>">
 	<a class="nav-link" href="?page=request">
 		<i class="material-icons">group</i>
 		<p>Đơn đặt</p>
 	</a>
 </li>
 <?php
-if ($role == 0) {
+  if($role == 0) {
     ?>
-      <li class="nav-item <?php if ($page == 'bill') {
-        echo 'active';
-    }
-    ?>">
+      <li class="nav-item <?php if($page == 'bill') echo 'active' ?>">
         <a class="nav-link" href="?page=bill">
           <i class="material-icons">group</i>
           <p>Hóa đơn</p>
         </a>
       </li>
-      <li class="nav-item <?php if ($page == 'report') {
-        echo 'active';
-    }
-    ?>">
+      <li class="nav-item <?php if($page == 'report') echo 'active' ?>">
         <a class="nav-link" href="?page=report">
           <i class="material-icons">group</i>
           <p>Thống kê</p>
         </a>
       </li>
     <?php
-}
+  }
 ?>
 <li class="nav-item">
 	<a class="nav-link" href="login.php?logout=logout">
@@ -116,6 +95,25 @@ if ($role == 0) {
 
 .content-menu {
   padding: 0px;
+  /* display: none; */
+  /* overflow: hidden; */
   background-color: #f1f1f1;
 }
 </style>
+
+<!-- <script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script> -->

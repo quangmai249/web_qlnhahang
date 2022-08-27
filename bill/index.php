@@ -12,7 +12,6 @@
     $url="table.json";
 	$listTable = (array)callAPI("GET", $url);
 	foreach($orders as $key => $listOrder) {
-        $sum = 0;
 		$name = ((array)$listTable[$key])['name'];
         $room = ((array)$listTable[$key])['room'];
         $name = 'Phòng '. $room.' Bàn '. $name;
@@ -27,6 +26,7 @@
                 echo '<h3>Phục vụ: '.$waiter['name'].'</h3>';
                 echo '<h3>Mã hóa đơn: '.$rowRD['id'].'</h3>';
                 echo '<h3>Ngày tạo: '.date( "h:i d/m/Y", $rowRD['id'] / 1000).'</h3>';
+                $sum = 0;
                 // get item info
                 ?>
                   <div class="table-responsive">
@@ -48,6 +48,9 @@
                           foreach($items as $keyItem => $item) {
                             $itemOrder = (array) $item;
                             $itemId = $itemOrder['id'];
+                            // $itemGroup = $itemOrder['group'];
+                            // $itemGroup = (array)$listItem[$itemGroup];
+                            // $item = (array)$itemGroup[$itemId];
                             $path = "order/$key/$keyRD/items/$keyItem.json";
                             $count = $itemOrder['count'];
                             $price = $itemOrder['price'];

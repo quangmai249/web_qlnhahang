@@ -21,6 +21,7 @@
 
 .content-order {
   padding: 0 18px;
+  /* display: none; */
   overflow: hidden;
   background-color: #f1f1f1;
 }
@@ -42,6 +43,7 @@
   firebase.database().ref('order').on('value', function(dataSnapshot) {
     change += 1;
     if(change > 1) {
+      // document.getElementById('notify').style.display = 'block';
       location.reload();
     }
   });
@@ -149,7 +151,7 @@
     $room = $row['room'];
     $name = 'Phòng '. $room.' Bàn '. $name
 		?>
-			<button type="button" class="collapsible-order"><?php echo $name?></button>
+			<button type="button" class="collapsible-order" style="background: <?php if(isset($listOrder[$key])) echo "green"; else echo "gray";?>; color: white"><h3><?php echo $name?></h3></button>
 			<div class="content-order">
         <?php
           if(isset($listOrder[$key])) {
@@ -160,7 +162,7 @@
                   $waiter = $rowRD['waiter'];
                   $keyWaiter = $waiter;
                   $waiter = (array) $listUser[$waiter];
-                  echo '<h3>Phục vụ: '.$waiter['name'].'</h3>';
+                  echo '<h4>Phục vụ: '.$waiter['name'].'</h4>';
                   // get item info
                   ?>
                     <div class="table-responsive">
@@ -172,9 +174,15 @@
                           <th style="font-size: 15pt">
                             Số lượng
                           </th>
-                          <th style="font-size: 15pt">
-                            Giá
-                          </th>
+                          <?php
+                            if($role == 0) {
+                              ?>
+                                <th style="font-size: 15pt">
+                                  Giá
+                                </th>
+                              <?php
+                            }
+                          ?>
                           <th style="font-size: 15pt">
                             Trạng thái
                           </th>
@@ -216,13 +224,13 @@
                     </div>
                     <form method="post">
                       <div class="form-group" style="text-align: right;">
-                        <h4>
-                          Tổng tiền: <?php echo formatPrice($sum);?>
-                        </h4>
                         <?php
                           if($role == 0) {
                             $token = $waiter['token'];
                             ?>
+                              <h4>
+                                Tổng tiền: <?php echo formatPrice($sum);?>
+                              </h4>
                               <input type='hidden' name='item' value='Hóa đơn tại <?php echo $name;?> đã được thanh toán'>
                               <input type='hidden' name='waiter' value='<?php echo $keyWaiter;?>'>
                               <input type='hidden' name='table' value='<?php echo $name;?>'>
@@ -230,10 +238,10 @@
                               <button type="submit" class="btn btn-primary" name="pay" value="<?php echo "order/$key/$keyRD.json"?>">
                                 Thanh toán
                               </button>
+                              <a class="btn btn-primary" href="report/bill.php?waiter-name=<?php echo $waiter['name'];?>&id=<?php echo "order/$key/$keyRD.json"?>&table=<?php echo $name?>" target="_blank">Hóa đơn</a>
                             <?php
                           }
                         ?>
-                        <a class="btn btn-primary" href="report/bill.php?id=<?php echo "order/$key/$keyRD.json"?>&table=<?php echo $name?>" target="_blank">Hóa đơn</a>
                       </div>
                     </form>
                   <?php
@@ -267,17 +275,19 @@
       }
     }
     $status = getStatusActionOrder($status);
+    $p = "";
+    if($role == 0) {
+      $p = "<td>$price</td>";
+    }
     echo "<tr style='font-size: 24px'>
             <td>
               $name
             </td>
             <td>
               $count
-            </td>
-            <td>
-              $price
-            </td>
-            <td>
+            </td>"
+            .$p.
+            "<td>
               $status
             </td>
             <td>

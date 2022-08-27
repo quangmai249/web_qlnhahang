@@ -19,19 +19,23 @@
     // Connect to database
     include('../connection.php');
     $id = $_GET['id'];
-    
+    $waiter_name = $_GET['waiter-name'];
     $row = (array) callAPI("GET", $id);
 
     $pdf = new PDF();
     $pdf->AddPage();
     $pdf->Cell(0,10,'Mã hóa đơn '.$row['id'],0,0,'L');
     $pdf->Ln();
+    $pdf->Cell(0,10,'Phục vụ '. $waiter_name,0,0,'L');
+    $pdf->Ln();
+    $pdf->Cell(0,10,'Khách hàng:....................................................',0,0,'L');
+    $pdf->Ln();
     $pdf->Cell(0,10,'Bàn '.$_GET['table'],0,0,'L');
     $pdf->Ln();
     $pdf->Cell(80,10,'Tên món',1,0,'C');
     $pdf->Cell(30,10,'Đơn giá',1,0,'C');
     $pdf->Cell(30,10,'Số lượng',1,0,'C');
-    $pdf->Cell(50,10,'Tổng giá',1,0,'C');
+    $pdf->Cell(50,10,'Thành tiền',1,0,'C');
     $pdf->Ln();
     $items = (array) $row['items'];
     foreach($items as $keyItem => $item) {

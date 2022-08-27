@@ -3,11 +3,18 @@
 		$path = $_POST['path'];
 		$count = (int)$_POST['count'] - 1;
 		$reason = $_POST['reason'];
+		$item = $_POST['item'].' đã bị giảm số lượng do '.$reason;
+		$token = $_POST['token'];
 		$param = json_encode(array("count" => $count, "reason" => $reason));
 		$data = callAPI("PATCH", $path, $param);
 		if ($data != 200) {
 			echo "<script type='text/javascript'>alert('Update fail');</script>";
 		}else{
+			$waiter = $_POST['waiter'];
+			$date = date("d/m/Y H:i");
+			$param = json_encode(array("waiter" => $waiter, "message" => $item, "date" => $date));
+			$data = callAPI("POST", "notify.json", $param);
+			sentNotify($token, $item);
 			echo "<script type='text/javascript'>alert('Update success');</script>";
 			echo '<meta http-equiv="refresh" content="0">';
 		}
@@ -25,10 +32,17 @@
 					<?php
 						if(isset($_POST['remove'])){
 							$id = $_POST['remove'];
+							$item = $_POST['item'];
+							$token = $_POST['token'];
 							$count = $_POST['count'];
+							$waiter = $_POST['waiter'];
+
 					?>
-                    <input type="hidden" class="form-control add-control" name="path" value="<?php echo $id;?>" required>
+                    <input type="hidden" class="form-control add-control" name="item" value="<?php echo $item;?>" required>
+					<input type="hidden" class="form-control add-control" name="token" value="<?php echo $token;?>" required>
+					<input type="hidden" class="form-control add-control" name="path" value="<?php echo $id;?>" required>
 					<input type="hidden" class="form-control add-control" name="count" value="<?php echo $count;?>" required>
+					<input type="hidden" class="form-control add-control" name="waiter" value="<?php echo $waiter;?>" required>
                     <div class="form-group">
 						<label>Lý do</label> <input
 							type="text" class="form-control add-control" name="reason" required>

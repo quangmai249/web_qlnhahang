@@ -11,6 +11,10 @@
 			echo '<meta http-equiv="refresh" content="0">';
 		}
   }
+  $r = "";
+  if(isset($_POST['role'])) {
+    $r = $_POST['role'];
+  }
   function user_rows($key, $user_name, $pass, $name, $phone, $address, $role){
     echo "<tr>
             <td>
@@ -37,7 +41,35 @@
           </tr>";
   }
 ?>
-<div class="table-responsive">
+
+<form id="report" method="post">
+	<div id="material-tabs" style="padding-bottom: 10px">
+	    <div class="btn-report" style="background-color: white; height: 50px; padding: 0x; text-align: left">
+			<label>Loại tài khoản</label> 
+			<select class="form-control add-control" style="height: 35px" name="role" required>
+        <?php
+          for($i = 0; $i < count($ROLE); $i++ ) {
+            ?>
+              <?php
+								for($i = 0; $i < count($ROLE); $i++ ) {
+									$selected = "";
+									if($i == $r) {
+										$selected = "selected";
+									}
+									?>
+										<option value="<?php echo $i?>" <?php echo $selected?>><?php echo $ROLE[$i]?></option>
+									<?php
+								}
+							?>
+            <?php
+          }
+        ?>
+      </select>
+		</div>
+		<button type='submit' name="filter" class='btn-report' style="height: 50px; padding: 0px; margin-left: 30px; width: 200px">Tìm kiếm</button>"
+	</div>
+	<div class="report-div">
+	<div class="table-responsive">
   <table class="table table-hover">
     <thead class="text-primary">
       <th style="font-size: 15pt">
@@ -55,6 +87,9 @@
       <th style="font-size: 15pt">
         Quyền
       </th>
+      <!-- <th style="font-size: 15pt">
+        Mật khẩu
+      </th> -->
       <th width="100px"></th>
     </thead>
     <tbody>
@@ -64,6 +99,8 @@
         if($listUser) {
           foreach($listUser as $key => $row) {
             $row = (array) $row;
+            $role = $row['role'];
+            if($role != $r && $r != "") continue;
             $username = $row['username'];
             $password = $row['password'];
             $name = $row['name'];
@@ -77,6 +114,8 @@
     </tbody>
   </table>
 </div>
+	</div>
+</form>
 <?php
   include("add.php");
   include("alter.php");
