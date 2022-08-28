@@ -56,7 +56,12 @@
   <h4>Có thay đổi mới vui lòng load lại trang<h4>
 </div>
 
+<audio autoplay>
+  <source src="notifySound.mp3" type="audio/mpeg">
+</audio>
+
 <?php
+
   if (isset($_POST['pay'])) {
     $url = $_POST['pay'];
     $token = $_POST['token'];
@@ -149,14 +154,17 @@
     $sum = 0;
 		$name = $row['name'];
     $room = $row['room'];
-    $name = 'Phòng '. $room.' Bàn '. $name
+    $name = 'Phòng '. $room.' Bàn '. $name;
 		?>
+
 			<button type="button" class="collapsible-order" style="background: <?php if(isset($listOrder[$key])) echo "green"; else echo "gray";?>; color: white"><h3><?php echo $name?></h3></button>
 			<div class="content-order">
         <?php
-          if(isset($listOrder[$key])) {
+          if(isset($listOrder[$key])) {;
             foreach($listOrder[$key] as $keyRD => $rowRD) {
+
               $rowRD = (array) $rowRD;
+
                 if($rowRD['status'] == 0) {
                   // get waiter info
                   $waiter = $rowRD['waiter'];
@@ -248,7 +256,6 @@
                 }
             }
           }
-          
         ?>
 			</div>
 		<?php
